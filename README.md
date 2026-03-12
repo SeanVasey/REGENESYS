@@ -27,7 +27,7 @@ Upload images, deconstruct their visual DNA, and generate production-ready promp
 |-------|-----------|
 | Frontend | React 18, Vite 6 |
 | Styling | CSS-in-JS (inline styles with design tokens) |
-| AI Backend | Google Gemini 2.5 Flash API |
+| AI Backend | OpenAI GPT-4o API |
 | Testing | Vitest, React Testing Library |
 | Linting | ESLint 9 with React Hooks & Refresh plugins |
 | CI/CD | GitHub Actions (lint, test, build) |
@@ -38,7 +38,7 @@ Upload images, deconstruct their visual DNA, and generate production-ready promp
 ### Prerequisites
 
 - Node.js 22+ and npm
-- A Google Gemini API key ([get one here](https://aistudio.google.com/apikey))
+- An OpenAI API key ([get one here](https://platform.openai.com/api-keys))
 
 ### Setup
 
@@ -49,11 +49,14 @@ npm install
 cp .env.example .env
 ```
 
-Edit `.env` and add your Gemini API key:
+Edit `.env` and add your OpenAI API key:
 
 ```bash
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
+VITE_OPENAI_API_KEY=your_openai_api_key_here
 ```
+
+For Vercel deployment, add `VITE_OPENAI_API_KEY` as an environment variable in
+your project settings.
 
 ### Run
 
@@ -84,7 +87,7 @@ Documented in `.env.example`:
 
 | Variable | Description |
 |----------|-----------|
-| `VITE_GEMINI_API_KEY` | Google Gemini API key for visual analysis |
+| `VITE_OPENAI_API_KEY` | OpenAI API key for visual analysis (GPT-4o) |
 
 ## Repository Structure
 

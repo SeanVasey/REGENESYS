@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   App component rendering.
 - ESLint 9 flat config with React Hooks and Refresh plugins.
 - GitHub Actions CI pipeline: lint, test, build on every PR and main push.
-- `.env.example` with Gemini API key configuration.
+- `.env.example` with OpenAI API key configuration.
 - VASEY/AI branding throughout header, footer, and favicon.
 
 ### Changed
