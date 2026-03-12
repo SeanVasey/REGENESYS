@@ -278,7 +278,7 @@ export default function App() {
         @keyframes vai-fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
         @keyframes vai-pulseGlow { 0%,100%{box-shadow:0 0 20px rgba(0,206,209,0.15)} 50%{box-shadow:0 0 40px rgba(0,206,209,0.3)} }
         * { box-sizing:border-box; margin:0; padding:0; }
-        html { overflow-x: hidden; }
+        html, body { background: ${T.bg}; overflow-x: hidden; }
         ::-webkit-scrollbar { width:5px; }
         ::-webkit-scrollbar-track { background:transparent; }
         ::-webkit-scrollbar-thumb { background:rgba(100,116,139,0.15); border-radius:3px; }
@@ -432,7 +432,7 @@ export default function App() {
                 v1.2
               </span>
             </div>
-            <Icons.VaseyLogo size={20} style={{ opacity: 0.35, color: T.dim }} />
+            <Icons.VaseyLogo size={20} style={{ opacity: 0.55, color: T.dim }} />
           </div>
         </div>
       </header>
