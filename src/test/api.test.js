@@ -1,7 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchWithRetry } from "../lib/api.js";
+import { fetchWithRetry, getTokenLimitParam } from "../lib/api.js";
 
 describe("fetchWithRetry", () => {
+
+  it("uses max_completion_tokens for GPT-5 models", () => {
+    const result = getTokenLimitParam("gpt-5-mini-2025-08-07", 2048);
+    expect(result).toEqual({ max_completion_tokens: 2048 });
+  });
+
+  it("uses max_tokens for non GPT-5 models", () => {
+    const result = getTokenLimitParam("gpt-4o-mini", 2048);
+    expect(result).toEqual({ max_tokens: 2048 });
+  });
   beforeEach(() => {
     vi.restoreAllMocks();
   });

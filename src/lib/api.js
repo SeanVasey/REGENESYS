@@ -1,6 +1,14 @@
 const MAX_RETRIES = 5;
 const DELAYS = [1000, 2000, 4000, 8000, 16000];
 
+export function getTokenLimitParam(model, maxTokens) {
+  if (model.startsWith("gpt-5")) {
+    return { max_completion_tokens: maxTokens };
+  }
+
+  return { max_tokens: maxTokens };
+}
+
 export async function fetchWithRetry(url, options, retries = MAX_RETRIES) {
   for (let i = 0; i < retries; i++) {
     try {
