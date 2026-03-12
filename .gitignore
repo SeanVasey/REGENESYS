@@ -1,0 +1,36 @@
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+dist/
+build/
+coverage/
+.next/
+out/
+
+# Dependency directories
+node_modules/
+
+# Python artifacts
+__pycache__/
+*.pyc
+.venv/
+
+# Misc
+*.swp
+*.swo

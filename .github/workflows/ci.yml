@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  baseline-checks:
+    name: Baseline checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required baseline files
+        run: |
+          set -euo pipefail
+          required_files=(
+            ".editorconfig"
+            ".gitignore"
+            "README.md"
+            "LICENSE"
+            "CHANGELOG.md"
+            "SECURITY.md"
+            "CODE_OF_CONDUCT.md"
+            ".env.example"
+            "docs/MANIFEST.md"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "Missing required file: $file"
+              exit 1
+            fi
+          done
+
+      - name: Lint markdown
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: |
+            **/*.md
