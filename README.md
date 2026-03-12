@@ -27,7 +27,7 @@ Upload images, deconstruct their visual DNA, and generate production-ready promp
 |-------|-----------|
 | Frontend | React 18, Vite 6 |
 | Styling | CSS-in-JS (inline styles with design tokens) |
-| AI Backend | OpenAI GPT-4o API |
+| AI Backend | OpenAI GPT-5.4 Thinking API |
 | Testing | Vitest, React Testing Library |
 | Linting | ESLint 9 with React Hooks & Refresh plugins |
 | CI/CD | GitHub Actions (lint, test, build) |
@@ -87,7 +87,7 @@ Documented in `.env.example`:
 
 | Variable | Description |
 |----------|-----------|
-| `VITE_OPENAI_API_KEY` | OpenAI API key for visual analysis (GPT-4o) |
+| `VITE_OPENAI_API_KEY` | OpenAI API key for visual analysis (GPT-5.4 Thinking) |
 
 ## Repository Structure
 
