@@ -42,6 +42,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated OpenAI model usage from GPT-5.4 Thinking to GPT-5 mini (`gpt-5-mini-2025-08-07`) in the application request payload and project documentation for Vercel/environment consistency.
+
 ### Added
 
 - `CLAUDE.md` — AI-assisted development operating instructions.
