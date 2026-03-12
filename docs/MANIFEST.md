@@ -6,6 +6,47 @@ This manifest tracks major repository artifacts and governance files.
 
 - `README.md` — Project overview, setup, usage, and architecture notes.
 - `LICENSE` — Apache 2.0 license terms.
+- `index.html` — Vite entry HTML with app metadata.
+- `package.json` — Dependencies, scripts, and project metadata.
+
+## Application Source (`src/`)
+
+- `src/main.jsx` — React entry point.
+- `src/App.jsx` — Main application component.
+
+### Components (`src/components/`)
+
+- `AnalysisProgress.jsx` — Animated multi-stage progress indicator.
+- `HistoryPanel.jsx` — Prompt history panel with recall and removal.
+- `Icons.jsx` — SVG icon components (AppIcon, VaseyLogo, UI icons).
+- `NeuralMesh.jsx` — Animated canvas background with connected nodes.
+- `SubjectInput.jsx` — Style transfer target subject textarea.
+- `UI.jsx` — Glass panel, SectionLabel, CopyBtn, Collapsible components.
+- `VariationControls.jsx` — Variation axis sliders and count selector.
+
+### Library (`src/lib/`)
+
+- `api.js` — `fetchWithRetry` utility with exponential backoff.
+- `constants.js` — Modes, platforms, detail levels, default configs.
+- `prompts.js` — System/user prompt builders and response parser.
+- `tokens.js` — VASEY/AI design tokens (colors, borders, effects).
+
+### Tests (`src/test/`)
+
+- `setup.js` — Test environment setup (jest-dom matchers).
+- `api.test.js` — API utility tests (5 tests).
+- `App.test.jsx` — App component rendering tests (13 tests).
+- `constants.test.js` — Constants validation tests (5 tests).
+- `prompts.test.js` — Prompt builder and parser tests (18 tests).
+
+## Static Assets (`public/`)
+
+- `regenesys-icon.svg` — App favicon / branding icon.
+
+## Build & Config
+
+- `vite.config.js` — Vite and Vitest configuration.
+- `eslint.config.js` — ESLint 9 flat config with React plugins.
 
 ## Governance and Policy
 
@@ -21,13 +62,13 @@ This manifest tracks major repository artifacts and governance files.
 
 ## AI-Assisted Development
 
-- `CLAUDE.md` — Operating instructions for Claude Code sessions (standards,
-  workflow, verification protocol).
+- `CLAUDE.md` — Operating instructions for Claude Code sessions.
 
 ## Operational Guardrails
 
-- `.github/workflows/ci.yml` — Pull request and main branch baseline checks.
-- `.markdownlint-cli2.jsonc` — Markdown lint configuration (disables
-  problematic default rules like MD013 line-length).
+- `.github/workflows/ci.yml` — CI pipeline: baseline checks, lint, test,
+  build.
+- `.github/workflows/ci-local-check.sh` — Local baseline validation script.
+- `.markdownlint-cli2.jsonc` — Markdown lint configuration.
 - `tasks/todo.md` — Current task planning and execution checklist.
 - `tasks/lessons.md` — Lessons learned and prevention rules.
