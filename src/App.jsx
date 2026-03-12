@@ -416,7 +416,7 @@ export default function App() {
                     boxShadow: `0 0 6px ${T.teal}`,
                   }}
                 />
-                <span>Online</span>
+                <span>Systems Online</span>
               </div>
               <span
                 style={{
