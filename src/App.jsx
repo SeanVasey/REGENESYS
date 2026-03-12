@@ -312,17 +312,24 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 20,
-          padding: "calc(20px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px)) 16px calc(16px + env(safe-area-inset-left, 0px))",
-          background: "rgba(9,10,15,0.88)",
+          padding: "calc(12px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px)) 12px calc(16px + env(safe-area-inset-left, 0px))",
+        }}
+      >
+      <div
+        style={{
+          maxWidth: 920,
+          margin: "0 auto",
+          background: "rgba(9,10,15,0.65)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          borderBottom: `1px solid ${T.borderSubtle}`,
+          borderRadius: 16,
+          border: `1px solid rgba(0,206,209,0.08)`,
+          boxShadow: "0 4px 30px rgba(0,0,0,0.3), 0 0 40px rgba(0,206,209,0.03) inset",
+          padding: "16px 20px",
         }}
       >
         <div
           style={{
-            maxWidth: 900,
-            margin: "0 auto",
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "space-between",
@@ -435,6 +442,7 @@ export default function App() {
             <Icons.VaseyLogo size={20} style={{ opacity: 0.55, color: T.dim }} />
           </div>
         </div>
+      </div>
       </header>
 
       {/* Main */}
@@ -1267,13 +1275,20 @@ export default function App() {
             opacity: 0.6,
             lineHeight: 1.4,
             color: T.dim,
+            textAlign: "center",
           }}
         >
           A VASEY/AI creation. Part of the Vasey Multimedia content series.
-          <span style={{ margin: "0 6px", color: T.borderSubtle }}>
-            &bull;
-          </span>
-          All rights reserved.
+        </div>
+        <div
+          style={{
+            fontSize: 9,
+            opacity: 0.6,
+            lineHeight: 1.4,
+            color: T.dim,
+          }}
+        >
+          &copy; 2026 All rights reserved.
         </div>
       </footer>
     </div>
