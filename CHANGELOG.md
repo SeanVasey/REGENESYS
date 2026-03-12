@@ -44,7 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated OpenAI model usage from GPT-5.4 Thinking to GPT-5 mini (`gpt-5-mini-2025-08-07`) in the application request payload and project documentation for Vercel/environment consistency.
+- Updated OpenAI request token parameter handling to be model-aware (`max_completion_tokens` for GPT-5, `max_tokens` fallback for non-GPT-5) to prevent runtime failures in image analysis.
+- Added complete Open Graph and Twitter card metadata in `index.html` for Vercel/social link previews, including canonical URL, title, description, and share image tags.
+- README and MANIFEST now document social preview metadata requirements and Open Graph asset usage for deployment.
 
 ### Added
 

@@ -58,6 +58,9 @@ VITE_OPENAI_API_KEY=your_openai_api_key_here
 For Vercel deployment, add `VITE_OPENAI_API_KEY` as an environment variable in
 your project settings.
 
+Also update Open Graph URLs in `index.html` to match your final production domain
+(`og:url`, `og:image`, and `twitter:image`) so social previews resolve correctly.
+
 ### Run
 
 ```bash
@@ -94,7 +97,8 @@ Documented in `.env.example`:
 ```text
 .
 ├── public/
-│   └── regenesys-icon.svg          # App favicon / icon
+│   ├── regenesys-icon.svg          # App favicon / icon
+│   └── og-image.svg                # Social sharing Open Graph image
 ├── src/
 │   ├── components/
 │   │   ├── AnalysisProgress.jsx    # Animated progress indicator

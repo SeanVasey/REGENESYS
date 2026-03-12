@@ -12,7 +12,7 @@ import {
   DETAILS,
   DEFAULT_VARIATION_CONFIG,
 } from "./lib/constants.js";
-import { fetchWithRetry } from "./lib/api.js";
+import { fetchWithRetry, getTokenLimitParam } from "./lib/api.js";
 import { buildSystem, buildUser, parseResult } from "./lib/prompts.js";
 import { Icons } from "./components/Icons.jsx";
 import { NeuralMesh } from "./components/NeuralMesh.jsx";
@@ -145,9 +145,10 @@ export default function App() {
         })),
       ];
 
+      const model = "gpt-5-mini-2025-08-07";
       const payload = {
-        model: "gpt-5-mini-2025-08-07",
-        max_tokens: maxTokens,
+        model,
+        ...getTokenLimitParam(model, maxTokens),
         messages: [
           { role: "system", content: systemPromptText },
           { role: "user", content: userContent },

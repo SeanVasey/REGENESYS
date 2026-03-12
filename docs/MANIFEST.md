@@ -42,6 +42,7 @@ This manifest tracks major repository artifacts and governance files.
 ## Static Assets (`public/`)
 
 - `regenesys-icon.svg` — App favicon / branding icon.
+- `og-image.svg` — Social sharing image used by Open Graph/Twitter metadata.
 
 ## Build & Config
 
