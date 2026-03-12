@@ -9,6 +9,7 @@ required_files=(
   "CHANGELOG.md"
   "SECURITY.md"
   "CODE_OF_CONDUCT.md"
+  "CLAUDE.md"
   ".env.example"
   "docs/MANIFEST.md"
 )

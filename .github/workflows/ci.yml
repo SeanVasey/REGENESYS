@@ -2,6 +2,8 @@ name: CI
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -28,15 +30,17 @@ jobs:
             "SECURITY.md"
             "CODE_OF_CONDUCT.md"
             ".env.example"
+            "CLAUDE.md"
             "docs/MANIFEST.md"
           )
 
           for file in "${required_files[@]}"; do
             if [[ ! -f "$file" ]]; then
-              echo "Missing required file: $file"
+              echo "::error::Missing required file: $file"
               exit 1
             fi
           done
+          echo "All required baseline files are present."
 
       - name: Lint markdown
         uses: DavidAnson/markdownlint-cli2-action@v20
