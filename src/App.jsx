@@ -312,7 +312,7 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 20,
-          padding: "20px 16px 16px",
+          padding: "calc(20px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px)) 16px calc(16px + env(safe-area-inset-left, 0px))",
           background: "rgba(9,10,15,0.88)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
@@ -389,25 +389,50 @@ export default function App() {
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: 6,
+              flexDirection: "column",
+              alignItems: "flex-end",
+              gap: 10,
               flexShrink: 0,
               marginTop: 2,
             }}
           >
-            <span
-              style={{
-                fontSize: 9,
-                color: T.dim,
-                fontFamily: "'JetBrains Mono', monospace",
-                padding: "3px 8px",
-                background: T.glass,
-                borderRadius: 5,
-                border: `1px solid ${T.borderSubtle}`,
-              }}
-            >
-              v1.2
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 5,
+                  fontSize: 9,
+                  color: T.dim,
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+              >
+                <span
+                  style={{
+                    width: 5,
+                    height: 5,
+                    borderRadius: "50%",
+                    background: T.teal,
+                    boxShadow: `0 0 6px ${T.teal}`,
+                  }}
+                />
+                <span>Online</span>
+              </div>
+              <span
+                style={{
+                  fontSize: 9,
+                  color: T.dim,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  padding: "3px 8px",
+                  background: T.glass,
+                  borderRadius: 5,
+                  border: `1px solid ${T.borderSubtle}`,
+                }}
+              >
+                v1.2
+              </span>
+            </div>
+            <Icons.VaseyLogo size={20} style={{ opacity: 0.35, color: T.dim }} />
           </div>
         </div>
       </header>
@@ -419,7 +444,7 @@ export default function App() {
           zIndex: 5,
           maxWidth: 900,
           margin: "0 auto",
-          padding: "20px 16px 140px",
+          padding: "20px 16px 100px",
         }}
       >
         {/* Analysis Mode */}
@@ -1208,7 +1233,7 @@ export default function App() {
           left: 0,
           right: 0,
           zIndex: 20,
-          padding: "14px 20px 18px",
+          padding: "10px calc(20px + env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) calc(20px + env(safe-area-inset-left, 0px))",
           background: "rgba(9,10,15,0.95)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
@@ -1216,75 +1241,39 @@ export default function App() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 10,
+          gap: 3,
           fontFamily: "'JetBrains Mono', monospace",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: 4,
-            textAlign: "center",
+            gap: 8,
+            fontSize: 10,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: 10,
-            }}
-          >
-            <span style={{ color: T.textSoft, fontWeight: 600 }}>
-              &copy; {new Date().getFullYear()} VASEY/AI
-            </span>
-            <span style={{ color: T.borderSubtle }}>|</span>
-            <span style={{ color: T.dim }}>
-              REGENESYS Prompt Generator v1.2
-            </span>
-          </div>
-          <div
-            style={{
-              fontSize: 9,
-              opacity: 0.6,
-              lineHeight: 1.4,
-              color: T.dim,
-            }}
-          >
-            A VASEY/AI creation. Part of the Vasey Multimedia content series.
-            <span style={{ margin: "0 6px", color: T.borderSubtle }}>
-              &bull;
-            </span>
-            All rights reserved.
-          </div>
+          <span style={{ color: T.textSoft, fontWeight: 600 }}>
+            &copy; {new Date().getFullYear()} VASEY/AI
+          </span>
+          <span style={{ color: T.borderSubtle }}>|</span>
+          <span style={{ color: T.dim }}>
+            REGENESYS Prompt Generator v1.2
+          </span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Icons.VaseyLogo size={24} style={{ opacity: 0.8 }} />
-          <span
-            style={{ height: 12, width: 1, background: T.borderSubtle }}
-          />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              fontSize: 9,
-              color: T.dim,
-            }}
-          >
-            <span
-              style={{
-                width: 5,
-                height: 5,
-                borderRadius: "50%",
-                background: T.teal,
-                boxShadow: `0 0 6px ${T.teal}`,
-              }}
-            />
-            <span>Systems Online</span>
-          </div>
+        <div
+          style={{
+            fontSize: 9,
+            opacity: 0.6,
+            lineHeight: 1.4,
+            color: T.dim,
+          }}
+        >
+          A VASEY/AI creation. Part of the Vasey Multimedia content series.
+          <span style={{ margin: "0 6px", color: T.borderSubtle }}>
+            &bull;
+          </span>
+          All rights reserved.
         </div>
       </footer>
     </div>
