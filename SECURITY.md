@@ -10,9 +10,11 @@ Security updates are currently provided for the latest commit on `main`.
 
 Please **do not** open public GitHub issues for vulnerabilities.
 
-Instead, report privately to: **security@regenesys.example** (placeholder; replace with a monitored inbox).
+Instead, report privately to: **<security@regenesys.example>** (placeholder;
+replace with a monitored inbox).
 
 When reporting, include:
+
 - A clear description of the issue
 - Steps to reproduce
 - Potential impact

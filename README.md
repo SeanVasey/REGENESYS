@@ -12,6 +12,7 @@ Unlock the data behind the image. REGENESYS is a platform concept for analyzing 
 ## Tech Stack
 
 Current repository baseline:
+
 - Documentation-first project scaffolding
 - GitHub Actions for baseline CI checks
 - Markdown governance and operational docs
@@ -54,14 +55,25 @@ Environment variables are documented in `.env.example`.
 
 ```text
 .
-├── .github/workflows/ci.yml
+├── .editorconfig
+├── .env.example
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── ci-local-check.sh
+├── .gitignore
+├── .markdownlint-cli2.jsonc
 ├── CHANGELOG.md
+├── CLAUDE.md
 ├── CODE_OF_CONDUCT.md
-├── docs/MANIFEST.md
+├── docs/
+│   └── MANIFEST.md
 ├── LICENSE
 ├── README.md
 ├── SECURITY.md
 └── tasks/
+    ├── lessons.md
+    └── todo.md
 ```
 
 ## Usage
