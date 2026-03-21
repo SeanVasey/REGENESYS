@@ -4,12 +4,7 @@ import sharp from "sharp";
 // Matches the SVG in public/regenesys-icon.svg at 512×512 for crisp PNG rendering.
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1a1f2e"/>
-      <stop offset="50%" stop-color="#0f1319"/>
-      <stop offset="100%" stop-color="#1a1f2e"/>
-    </linearGradient>
-    <linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1">
+<linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#00e5ff"/>
       <stop offset="100%" stop-color="#00a0b8"/>
     </linearGradient>
@@ -32,9 +27,6 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-
-  <!-- Dark background for PNG (ensures icon is visible on any surface) -->
-  <rect width="512" height="512" rx="96" ry="96" fill="url(#bgGrad)"/>
 
   <circle cx="256" cy="256" r="90" fill="url(#starGlow)"/>
 
