@@ -6,30 +6,48 @@ const AppIcon = ({ size = 36 }) => (
   <svg
     width={size}
     height={size}
-    viewBox="0 0 40 40"
+    viewBox="0 0 512 512"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
     <defs>
-      <linearGradient id="app-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor={T.teal} />
-        <stop offset="50%" stopColor={T.beam} />
-        <stop offset="100%" stopColor={T.cyan} />
+      <linearGradient id="app-icon-cyan" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#00e5ff" />
+        <stop offset="100%" stopColor="#00a0b8" />
       </linearGradient>
-      <filter id="app-icon-glow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="1.5" result="blur" />
-        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      <linearGradient id="app-icon-sparkle" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#80f0ff" />
+        <stop offset="50%" stopColor="#00d4f0" />
+        <stop offset="100%" stopColor="#00b8d9" />
+      </linearGradient>
+      <radialGradient id="app-icon-glow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.4" />
+        <stop offset="70%" stopColor="#00b8d9" stopOpacity="0.1" />
+        <stop offset="100%" stopColor="#00b8d9" stopOpacity="0" />
+      </radialGradient>
+      <filter id="app-icon-blur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
       </filter>
     </defs>
-    <g filter="url(#app-icon-glow)">
-      <path d="M 14 7 L 10 7 C 8.34315 7 7 8.34315 7 10 L 7 14" stroke="url(#app-icon-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 26 7 L 30 7 C 31.6569 7 33 8.34315 33 10 L 33 14" stroke="url(#app-icon-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 7 26 L 7 30 C 7 31.6569 8.34315 33 10 33 L 14 33" stroke="url(#app-icon-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 33 26 L 33 30 C 33 31.6569 31.6569 33 30 33 L 26 33" stroke="url(#app-icon-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 20 10 L 22.5 17.5 L 30 20 L 22.5 22.5 L 20 30 L 17.5 22.5 L 10 20 L 17.5 17.5 Z" fill="url(#app-icon-grad)" fillOpacity="0.9" />
-      <circle cx="20" cy="20" r="2.5" fill={T.bg} />
+    {/* Center glow */}
+    <circle cx="256" cy="256" r="90" fill="url(#app-icon-glow)" />
+    {/* Viewfinder brackets */}
+    <path d="M120,170 L120,136 Q120,120 136,120 L170,120" fill="none" stroke="url(#app-icon-cyan)" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M342,120 L376,120 Q392,120 392,136 L392,170" fill="none" stroke="url(#app-icon-cyan)" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M120,342 L120,376 Q120,392 136,392 L170,392" fill="none" stroke="url(#app-icon-cyan)" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M392,342 L392,376 Q392,392 376,392 L342,392" fill="none" stroke="url(#app-icon-cyan)" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Compass star */}
+    <g filter="url(#app-icon-blur)">
+      <path d="M256,176 L270,238 L256,230 L242,238 Z" fill="url(#app-icon-sparkle)" />
+      <path d="M256,336 L270,274 L256,282 L242,274 Z" fill="url(#app-icon-sparkle)" />
+      <path d="M176,256 L238,242 L230,256 L238,270 Z" fill="url(#app-icon-sparkle)" />
+      <path d="M336,256 L274,270 L282,256 L274,242 Z" fill="url(#app-icon-sparkle)" />
     </g>
+    {/* Center dot */}
+    <circle cx="256" cy="256" r="8" fill="#00e5ff" />
+    <circle cx="256" cy="256" r="4" fill="#ffffff" />
   </svg>
 );
 
