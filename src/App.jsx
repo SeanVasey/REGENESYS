@@ -341,17 +341,17 @@ export default function App() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: 52,
-                height: 52,
-                borderRadius: 14,
+                width: 64,
+                height: 64,
+                borderRadius: 16,
                 background:
-                  "linear-gradient(135deg, rgba(0,206,209,0.1), rgba(34,164,193,0.02))",
-                border: "1px solid rgba(0,206,209,0.2)",
-                boxShadow: "0 0 20px rgba(0,206,209,0.08) inset",
+                  "linear-gradient(135deg, rgba(0,206,209,0.12), rgba(34,164,193,0.03))",
+                border: "1px solid rgba(0,206,209,0.25)",
+                boxShadow: "0 0 24px rgba(0,206,209,0.1) inset",
                 flexShrink: 0,
               }}
             >
-              <Icons.AppIcon size={30} />
+              <Icons.AppIcon size={38} />
             </div>
             <div style={{ minWidth: 0 }}>
               <div
