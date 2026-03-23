@@ -336,23 +336,7 @@ export default function App() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 64,
-                height: 64,
-                borderRadius: 16,
-                background:
-                  "linear-gradient(135deg, rgba(0,206,209,0.12), rgba(34,164,193,0.03))",
-                border: "1px solid rgba(0,206,209,0.25)",
-                boxShadow: "0 0 24px rgba(0,206,209,0.1) inset",
-                flexShrink: 0,
-              }}
-            >
-              <Icons.AppIcon size={38} />
-            </div>
+            <Icons.AppIcon size={64} />
             <div style={{ minWidth: 0 }}>
               <div
                 style={{
