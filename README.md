@@ -1,12 +1,31 @@
-# <img src="public/regenesys-icon.svg" width="32" height="32" alt="REGENESYS icon" /> REGENESYS
+<p align="center">
+  <img src="public/regenesys-icon.svg" width="96" height="96" alt="REGENESYS scanning reticle icon" />
+</p>
 
-**VASEY/AI REGENESYS** — Visual Prompt Reverse-Engineering & Generation System.
+<h1 align="center">REGENESYS</h1>
 
-Upload images, deconstruct their visual DNA, and generate production-ready prompts for any major generative AI platform.
+<p align="center">
+  <strong>Visual Prompt Reverse-Engineering & Generation System</strong><br/>
+  Upload images, deconstruct their visual DNA, and generate production-ready prompts for any major generative AI platform.
+</p>
 
-[![CI](https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml/badge.svg)](https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml)
-![License](https://img.shields.io/badge/license-Apache--2.0-blue)
-![Version](https://img.shields.io/badge/version-1.2.0-teal)
+<p align="center">
+  <a href="https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml"><img src="https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
+  <img src="https://img.shields.io/badge/version-1.2.0-teal" alt="Version 1.2.0" />
+  <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License: Apache 2.0" />
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen" alt="Node.js >= 22" />
+  <img src="https://img.shields.io/badge/react-18-61DAFB?logo=react&logoColor=white" alt="React 18" />
+  <img src="https://img.shields.io/badge/vite-6-646CFF?logo=vite&logoColor=white" alt="Vite 6" />
+  <img src="https://img.shields.io/badge/tests-41%20passing-brightgreen" alt="41 tests passing" />
+</p>
+
+---
+
+<p align="center">
+  <img src="public/og-image.svg" width="600" alt="REGENESYS app preview — visual prompt reverse-engineering interface with neural mesh background" />
+</p>
+
+---
 
 ## Features
 
@@ -28,7 +47,7 @@ Upload images, deconstruct their visual DNA, and generate production-ready promp
 | Frontend | React 18, Vite 6 |
 | Styling | CSS-in-JS (inline styles with design tokens) |
 | AI Backend | OpenAI GPT-5 mini API (`gpt-5-mini-2025-08-07`) |
-| Testing | Vitest, React Testing Library |
+| Testing | Vitest, React Testing Library (41 tests) |
 | Linting | ESLint 9 with React Hooks & Refresh plugins |
 | CI/CD | GitHub Actions (lint, test, build) |
 | Fonts | Bebas Neue, Reddit Sans, JetBrains Mono |
@@ -55,12 +74,6 @@ Edit `.env` and add your OpenAI API key:
 VITE_OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-For Vercel deployment, add `VITE_OPENAI_API_KEY` as an environment variable in
-your project settings.
-
-Also update Open Graph URLs in `index.html` to match your final production domain
-(`og:url`, `og:image`, and `twitter:image`) so social previews resolve correctly.
-
 ### Run
 
 ```bash
@@ -86,11 +99,15 @@ npm run lint      # eslint
 
 ## Environment Variables
 
-Documented in `.env.example`:
+Documented in [`.env.example`](.env.example):
 
 | Variable | Description |
 |----------|-----------|
 | `VITE_OPENAI_API_KEY` | OpenAI API key for visual analysis (GPT-5 mini) |
+
+For Vercel deployment, add `VITE_OPENAI_API_KEY` as an environment variable in
+your project settings. Also update Open Graph URLs in `index.html` to match
+your production domain (`og:url`, `og:image`, `twitter:image`).
 
 ## Repository Structure
 
@@ -98,7 +115,10 @@ Documented in `.env.example`:
 .
 ├── public/
 │   ├── regenesys-icon.svg          # App favicon / icon
-│   └── og-image.svg                # Social sharing Open Graph image
+│   ├── og-image.svg                # Social sharing Open Graph image
+│   ├── icon-192.png / icon-512.png # PWA icons
+│   ├── apple-touch-icon.png        # iOS home screen icon
+│   └── manifest.json               # PWA manifest
 ├── src/
 │   ├── components/
 │   │   ├── AnalysisProgress.jsx    # Animated progress indicator
@@ -129,7 +149,9 @@ Documented in `.env.example`:
 │   └── lessons.md                  # Accumulated lessons
 ├── docs/
 │   └── MANIFEST.md                 # Repository artifact inventory
-├── index.html                      # Vite entry HTML
+├── scripts/
+│   └── generate-icons.mjs          # Icon generation utility
+├── index.html                      # Vite entry HTML (with OG metadata)
 ├── vite.config.js                  # Vite + Vitest configuration
 ├── eslint.config.js                # ESLint 9 flat config
 ├── package.json                    # Dependencies and scripts
@@ -151,13 +173,20 @@ Documented in `.env.example`:
 
 ## Deployment
 
-Build the static site with `npm run build`. The output in `dist/` can be deployed to any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages, etc.).
+Build the static site with `npm run build`. The output in `dist/` can be
+deployed to any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages).
 
 For Vercel:
 
 ```bash
 npx vercel
 ```
+
+## Contributing
+
+Contributions are welcome. Please open an issue first to discuss proposed
+changes. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community
+guidelines.
 
 ## License
 
@@ -166,6 +195,6 @@ Apache 2.0 — see [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <strong>&copy; 2026 VASEY/AI</strong> &middot; REGENESYS Prompt Generator v1.2<br/>
+  <strong>&copy; 2026 VASEY/AI</strong> &middot; REGENESYS v1.2.0<br/>
   A VASEY/AI creation. Part of the Vasey Multimedia content series.
 </p>

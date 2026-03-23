@@ -15,7 +15,14 @@
     "MD024": { "siblings_only": true },
 
     // Allow trailing punctuation in headings (e.g., "Security (OWASP Top 10 mindset)")
-    "MD026": { "punctuation": ".,;:!" }
+    "MD026": { "punctuation": ".,;:!" },
+
+    // Allow first line to be HTML (centered header block in README)
+    "MD041": false,
+
+    // Disable table column style enforcement — pipes without extra spacing
+    // are valid and more readable for compact tables
+    "MD060": false
   },
 
   // Ignore generated / third-party files

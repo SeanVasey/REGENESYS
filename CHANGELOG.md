@@ -44,9 +44,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **CLAUDE.md** — Rewritten with expanded security standards (auth, input
+  validation, supply chain, production hardening), detailed CI/CD deployment
+  guidance (Vercel, GitHub Pages, pre-deploy gates), and streamlined README
+  spec with hero imagery and badge row requirements.
+- **README.md** — Centered header with large app icon, full shields.io badge
+  row (CI, version, license, Node, React, Vite, tests), hero preview image,
+  PWA assets documented in repo structure, contributing section added.
 - Updated OpenAI request token parameter handling to be model-aware (`max_completion_tokens` for GPT-5, `max_tokens` fallback for non-GPT-5) to prevent runtime failures in image analysis.
 - Added complete Open Graph and Twitter card metadata in `index.html` for Vercel/social link previews, including canonical URL, title, description, and share image tags.
-- README and MANIFEST now document social preview metadata requirements and Open Graph asset usage for deployment.
 
 ### Added
 
