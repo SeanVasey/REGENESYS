@@ -30,7 +30,11 @@ describe("App", () => {
   it("renders the header with REGENESYS title", () => {
     render(<App />);
     expect(screen.getByText("REGENESYS")).toBeInTheDocument();
-    expect(screen.getByText("PROMPT GENERATOR")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Visual Prompt Reverse-Engineering & Generation System.",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("renders VASEY/AI branding", () => {
@@ -103,8 +107,13 @@ describe("App", () => {
 
   it("renders footer with copyright", () => {
     render(<App />);
-    const year = new Date().getFullYear().toString();
-    expect(screen.getByText(`\u00A9 ${year} VASEY/AI`)).toBeInTheDocument();
+    expect(screen.getByText("A VASEY/AI Production")).toBeInTheDocument();
+    expect(
+      screen.getByText(/All rights reserved/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "VASEY Multimedia" }),
+    ).toHaveAttribute("href", "https://vaseymultimedia.com");
   });
 
   it("renders version badge", () => {
@@ -112,8 +121,25 @@ describe("App", () => {
     expect(screen.getByText("v1.2")).toBeInTheDocument();
   });
 
-  it("renders Systems Online indicator", () => {
+  it("renders footer brand links", () => {
     render(<App />);
-    expect(screen.getByText("Systems Online")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Vasey Multimedia" }),
+    ).toHaveAttribute("href", "https://vaseymultimedia.com");
+    for (const link of screen.getAllByRole("link", { name: "VASEY/AI" })) {
+      expect(link).toHaveAttribute("href", "https://vasey.ai");
+    }
+  });
+
+  it("applies iOS safe-area insets to header, main, and footer", () => {
+    const { container } = render(<App />);
+    const header = container.querySelector("header");
+    const main = container.querySelector("main");
+    const footer = container.querySelector("footer");
+    expect(header.getAttribute("style")).toContain("safe-area-inset-top");
+    expect(header.getAttribute("style")).toContain("safe-area-inset-left");
+    expect(main.getAttribute("style")).toContain("safe-area-inset-right");
+    expect(footer.getAttribute("style")).toContain("safe-area-inset-bottom");
+    expect(footer.getAttribute("style")).toContain("safe-area-inset-left");
   });
 });

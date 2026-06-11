@@ -311,7 +311,8 @@ export default function App() {
         style={{
           position: "relative",
           zIndex: 20,
-          padding: "calc(24px + env(safe-area-inset-top, 0px)) 20px 20px",
+          padding:
+            "calc(24px + env(safe-area-inset-top, 0px)) calc(20px + env(safe-area-inset-right, 0px)) 20px calc(20px + env(safe-area-inset-left, 0px))",
           textAlign: "center",
           animation: "vai-fadeIn 0.6s ease",
         }}
@@ -388,7 +389,8 @@ export default function App() {
           zIndex: 5,
           maxWidth: 900,
           margin: "0 auto",
-          padding: "20px 16px 40px",
+          padding:
+            "20px calc(16px + env(safe-area-inset-right, 0px)) 40px calc(16px + env(safe-area-inset-left, 0px))",
         }}
       >
         {/* Analysis Mode */}
@@ -1179,8 +1181,8 @@ export default function App() {
           marginTop: 56,
           paddingTop: 32,
           paddingBottom: "calc(24px + env(safe-area-inset-bottom, 0px))",
-          paddingLeft: 16,
-          paddingRight: 16,
+          paddingLeft: "calc(16px + env(safe-area-inset-left, 0px))",
+          paddingRight: "calc(16px + env(safe-area-inset-right, 0px))",
           borderTop: `1px solid ${T.borderSubtle}`,
           textAlign: "center",
           animation: "vai-fadeIn 0.8s ease 0.8s both",

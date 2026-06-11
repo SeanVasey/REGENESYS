@@ -1,5 +1,30 @@
 # Task Plan
 
+## Session: Repo Maintenance + iOS Safe Areas (2026-06-11)
+
+### Goal
+
+Bring the repo to a verified-green state: fix failing tests, clear all npm
+audit findings, and complete iOS safe-area coverage for notched devices.
+
+### Plan Checklist
+
+- [x] Verify CLAUDE.md matches the canonical version (no changes needed).
+- [x] Run full verification suite — found 3 failing tests and 20 npm audit
+  vulnerabilities (6 critical).
+- [x] Remove unused `to-ico` devDependency (source of all critical
+  advisories via `request`/`jimp`/`minimist`).
+- [x] `npm audit fix` — vite 6.0.5 → 6.4.3, vitest 4.0.18 → 4.1.8;
+  0 vulnerabilities remaining.
+- [x] Fix 3 stale App tests left over from the v1.2 header/footer redesign.
+- [x] Add left/right `env(safe-area-inset-*)` padding to header, main, and
+  footer (top/bottom already present; `viewport-fit=cover` already set).
+- [x] Add safe-area and footer brand-link regression tests (44 tests).
+- [x] Bump version to 1.2.1; update README badges, CHANGELOG, MANIFEST.
+- [x] Verify: eslint clean, 44/44 tests, build OK, markdownlint clean,
+  baseline file check passes, `npm audit` 0 findings.
+- [x] Commit, push, open PR.
+
 ## Session: Implement REGENESYS Application (2026-03-12)
 
 ### Goal

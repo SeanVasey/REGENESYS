@@ -48,6 +48,8 @@ This manifest tracks major repository artifacts and governance files.
 
 - `vite.config.js` — Vite and Vitest configuration.
 - `eslint.config.js` — ESLint 9 flat config with React plugins.
+- `scripts/generate-icons.mjs` — Icon asset generator (sharp) for PNG
+  surfaces in `public/`.
 
 ## Governance and Policy
 
