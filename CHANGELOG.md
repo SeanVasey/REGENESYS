@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-06-11
+
+### Added
+
+- Left/right iOS safe-area insets (`env(safe-area-inset-left/right)`) on the
+  header, main content, and footer so the UI clears the notch and home
+  indicator in landscape on iPhone (top/bottom insets were already in place).
+- Regression test asserting safe-area insets are applied to header, main,
+  and footer, plus footer brand-link tests (44 tests total).
+
+### Fixed
+
+- Updated three stale App tests that still targeted the pre-redesign header
+  subtitle, footer copyright, and "Systems Online" indicator removed in the
+  v1.2 header/footer redesign.
+
+### Security
+
+- Removed unused `to-ico` devDependency, eliminating its vulnerable
+  transitive chain (`request`, `jimp`, `minimist` — 6 critical advisories).
+- Patched `vite` (6.0.5 → 6.4.3) and `vitest` (4.0.18 → 4.1.8) via
+  `npm audit fix`; `npm audit` now reports 0 vulnerabilities.
+
 ## [1.2.0] - 2026-03-12
 
 ### Added
