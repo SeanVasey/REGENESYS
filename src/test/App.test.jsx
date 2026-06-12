@@ -143,6 +143,25 @@ describe("App", () => {
     expect(footer.getAttribute("style")).toContain("safe-area-inset-left");
   });
 
+  it("renders a fixed top safe-area scrim that masks scrolling content", () => {
+    const { container } = render(<App />);
+    const scrim = container.querySelector(".vai-top-scrim");
+    expect(scrim).not.toBeNull();
+    expect(scrim).toHaveAttribute("aria-hidden", "true");
+    const css = container.querySelector("style").textContent;
+    const rule = css.match(/\.vai-top-scrim\s*\{[^}]*\}/)?.[0];
+    expect(rule).toBeDefined();
+    expect(rule).toContain("position: fixed");
+    expect(rule).toContain("height: env(safe-area-inset-top, 0px)");
+    expect(rule).toContain("pointer-events: none");
+    // Fill must come from the app background token (T.bg) plus the same
+    // ambient radial as the fixed glow layer — not a hardcoded approximation.
+    expect(rule).toContain("#090A0F");
+    expect(rule).toContain(
+      "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,206,209,0.04) 0%, transparent 70%)",
+    );
+  });
+
   it("sizes the app shell with dynamic viewport height and a vh fallback", () => {
     const { container } = render(<App />);
     const shell = container.querySelector(".vai-shell");

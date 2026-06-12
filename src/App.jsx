@@ -280,6 +280,16 @@ export default function App() {
         * { box-sizing:border-box; margin:0; padding:0; }
         html, body { background: ${T.bg}; overflow-x: hidden; }
         .vai-shell { min-height: 100vh; min-height: 100dvh; }
+        .vai-top-scrim {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: env(safe-area-inset-top, 0px);
+          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,206,209,0.04) 0%, transparent 70%) top / 100% 200px no-repeat, ${T.bg};
+          z-index: 30;
+          pointer-events: none;
+        }
         ::-webkit-scrollbar { width:5px; }
         ::-webkit-scrollbar-track { background:transparent; }
         ::-webkit-scrollbar-thumb { background:rgba(100,116,139,0.15); border-radius:3px; }
@@ -306,6 +316,15 @@ export default function App() {
           pointerEvents: "none",
         }}
       />
+
+      {/* Top safe-area scrim — masks content scrolling under the iOS status
+          bar / Dynamic Island. The radial layer must mirror the ambient top
+          gradient above (same geometry, fixed to the same viewport origin) so
+          the glow isn't clipped at the inset line; the base fill is T.bg, the
+          0% stop of the shell gradient. Height is 0 off-device. Styled in the
+          global style block because jsdom/cssstyle drops env() and layered
+          background shorthand from inline styles. */}
+      <div aria-hidden="true" className="vai-top-scrim" />
 
       {/* Header */}
       <header

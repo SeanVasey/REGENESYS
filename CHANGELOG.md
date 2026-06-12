@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Top safe-area scrim: a single fixed, pointer-transparent layer sized to
+  `env(safe-area-inset-top)` now masks page content scrolling under the iOS
+  status bar / Dynamic Island. It is filled with the app background token
+  (`T.bg`) plus the same viewport-fixed ambient radial glow as the page, so
+  the region is an exact visual match of the active background with no seam
+  or tonal band. Height resolves to 0 on devices without a top inset; layout
+  and existing header inset padding are unchanged.
+
 ## [1.2.1] - 2026-06-11
 
 ### Added
