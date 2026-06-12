@@ -263,8 +263,8 @@ export default function App() {
 
   return (
     <div
+      className="vai-shell"
       style={{
-        minHeight: "100vh",
         background: `linear-gradient(180deg, ${T.bg} 0%, #0C0D14 50%, ${T.bg} 100%)`,
         color: T.text,
         fontFamily: "'Reddit Sans', sans-serif",
@@ -279,6 +279,7 @@ export default function App() {
         @keyframes vai-pulseGlow { 0%,100%{box-shadow:0 0 20px rgba(0,206,209,0.15)} 50%{box-shadow:0 0 40px rgba(0,206,209,0.3)} }
         * { box-sizing:border-box; margin:0; padding:0; }
         html, body { background: ${T.bg}; overflow-x: hidden; }
+        .vai-shell { min-height: 100vh; min-height: 100dvh; }
         ::-webkit-scrollbar { width:5px; }
         ::-webkit-scrollbar-track { background:transparent; }
         ::-webkit-scrollbar-thumb { background:rgba(100,116,139,0.15); border-radius:3px; }
