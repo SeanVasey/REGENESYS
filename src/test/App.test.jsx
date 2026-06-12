@@ -142,4 +142,14 @@ describe("App", () => {
     expect(footer.getAttribute("style")).toContain("safe-area-inset-bottom");
     expect(footer.getAttribute("style")).toContain("safe-area-inset-left");
   });
+
+  it("sizes the app shell with dynamic viewport height and a vh fallback", () => {
+    const { container } = render(<App />);
+    const shell = container.querySelector(".vai-shell");
+    expect(shell).not.toBeNull();
+    const css = container.querySelector("style").textContent;
+    expect(css).toContain(
+      ".vai-shell { min-height: 100vh; min-height: 100dvh; }",
+    );
+  });
 });

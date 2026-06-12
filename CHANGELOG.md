@@ -87,6 +87,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Document (`html`/`body`) now paints the app background (`#090A0F`, tokens.js
+  `T.bg`) via a head style in `index.html`, so the iOS status-bar/notch and
+  home-indicator safe areas match the app from first paint — before React
+  mounts and on cold PWA launches — instead of flashing browser-default white.
+- App shell now sizes with `min-height: 100dvh` (with `100vh` fallback) so the
+  background tracks the iOS Safari dynamic toolbar, with a regression test
+  covering the rule.
 - CI workflow: scoped `pull_request` trigger to `main` branch only.
 - CI workflow: added `CLAUDE.md` to required-files validation.
 - CI workflow: use `::error::` annotation for clearer failure output.
