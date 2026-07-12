@@ -5,6 +5,7 @@ import App from "../App.jsx";
 
 // Mock canvas for NeuralMesh
 beforeEach(() => {
+  localStorage.clear();
   HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
     clearRect: vi.fn(),
     beginPath: vi.fn(),
@@ -116,9 +117,52 @@ describe("App", () => {
     ).toHaveAttribute("href", "https://vaseymultimedia.com");
   });
 
-  it("renders version badge", () => {
+  it("renders version badge sourced from package.json", () => {
     render(<App />);
-    expect(screen.getByText("v1.2")).toBeInTheDocument();
+    expect(screen.getByText(`v${__APP_VERSION__}`)).toBeInTheDocument();
+  });
+
+  it("restores persisted prompt history from localStorage", () => {
+    localStorage.setItem(
+      "regenesys.history.v1",
+      JSON.stringify([
+        {
+          id: 1,
+          mode: "single",
+          platform: "universal",
+          detail: "standard",
+          prompt: "a persisted prompt from a previous session",
+          thumbnail: null,
+          timestamp: new Date().toISOString(),
+        },
+      ]),
+    );
+    render(<App />);
+    expect(screen.getByText("PROMPT HISTORY")).toBeInTheDocument();
+  });
+
+  it("shows a dismissible notice when an oversized file is skipped", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const input = screen.getByLabelText("Upload images");
+    const big = new File(["x"], "huge.png", { type: "image/png" });
+    Object.defineProperty(big, "size", { value: 21 * 1024 * 1024 });
+    await user.upload(input, big);
+    const notice = await screen.findByRole("alert");
+    expect(notice).toHaveTextContent("huge.png skipped (larger than 20MB)");
+    await user.click(
+      screen.getByRole("button", { name: "Dismiss upload notice" }),
+    );
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("adds images pasted from the clipboard", async () => {
+    render(<App />);
+    const file = new File(["png-bytes"], "pasted.png", { type: "image/png" });
+    const event = new Event("paste", { bubbles: true });
+    event.clipboardData = { files: [file] };
+    window.dispatchEvent(event);
+    expect(await screen.findByText("UPLOADED (1)")).toBeInTheDocument();
   });
 
   it("renders footer brand links", () => {

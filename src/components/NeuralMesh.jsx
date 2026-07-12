@@ -9,6 +9,9 @@ export function NeuralMesh() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    const reducedMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const NODE_COUNT = window.innerWidth < 600 ? 50 : 120;
     const CONNECTION_DIST = 140;
 
@@ -36,10 +39,12 @@ export function NeuralMesh() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
-        a.x += a.vx;
-        a.y += a.vy;
-        if (a.x < 0 || a.x > canvas.width) a.vx *= -1;
-        if (a.y < 0 || a.y > canvas.height) a.vy *= -1;
+        if (!reducedMotion) {
+          a.x += a.vx;
+          a.y += a.vy;
+          if (a.x < 0 || a.x > canvas.width) a.vx *= -1;
+          if (a.y < 0 || a.y > canvas.height) a.vy *= -1;
+        }
 
         for (let j = i + 1; j < nodes.length; j++) {
           const b = nodes[j];
@@ -65,7 +70,8 @@ export function NeuralMesh() {
         ctx.fill();
         ctx.shadowBlur = 0;
       }
-      animRef.current = requestAnimationFrame(draw);
+      // Honor prefers-reduced-motion: render one static frame, no loop.
+      if (!reducedMotion) animRef.current = requestAnimationFrame(draw);
     };
     draw();
 

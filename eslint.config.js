@@ -8,7 +8,11 @@ export default [
     files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2024,
-      globals: { ...globals.browser, ...globals.es2021 },
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+        __APP_VERSION__: "readonly",
+      },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },

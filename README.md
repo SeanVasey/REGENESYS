@@ -11,12 +11,12 @@
 
 <p align="center">
   <a href="https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml"><img src="https://github.com/SeanVasey/REGENESYS/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
-  <img src="https://img.shields.io/badge/version-1.2.1-teal" alt="Version 1.2.1" />
+  <img src="https://img.shields.io/badge/version-1.3.0-teal" alt="Version 1.3.0" />
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License: Apache 2.0" />
   <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen" alt="Node.js >= 22" />
   <img src="https://img.shields.io/badge/react-18-61DAFB?logo=react&logoColor=white" alt="React 18" />
   <img src="https://img.shields.io/badge/vite-6-646CFF?logo=vite&logoColor=white" alt="Vite 6" />
-  <img src="https://img.shields.io/badge/tests-44%20passing-brightgreen" alt="44 tests passing" />
+  <img src="https://img.shields.io/badge/tests-65%20passing-brightgreen" alt="65 tests passing" />
 </p>
 
 ---
@@ -37,8 +37,10 @@
 - **Variation Engine** — Generate controlled prompt variants with adjustable axes (color, mood, style, composition)
 - **10 Platform Targets** — Universal, Midjourney, DALL-E, Stable Diffusion, Flux, Runway ML, Ideogram, Kling, Sora, Leonardo
 - **3 Detail Levels** — Concise, Standard, Production-grade output
-- **Prompt History** — Session history with recall and re-use
+- **Prompt History** — Persistent local history (survives reloads) with recall, timestamps, and removal
 - **Export** — Download generated prompts as `.txt` files
+- **Flexible Upload** — Drag-and-drop, file picker, or paste from clipboard, with 20MB/type validation
+- **Accessible by Default** — Keyboard focus rings and `prefers-reduced-motion` support
 
 ## Tech Stack
 
@@ -47,7 +49,7 @@
 | Frontend | React 18, Vite 6 |
 | Styling | CSS-in-JS (inline styles with design tokens) |
 | AI Backend | OpenAI GPT-5 mini API (`gpt-5-mini-2025-08-07`) |
-| Testing | Vitest, React Testing Library (44 tests) |
+| Testing | Vitest, React Testing Library (65 tests) |
 | Linting | ESLint 9 with React Hooks & Refresh plugins |
 | CI/CD | GitHub Actions (lint, test, build) |
 | Fonts | Bebas Neue, Reddit Sans, JetBrains Mono |
@@ -195,6 +197,6 @@ Apache 2.0 — see [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <strong>&copy; 2026 VASEY/AI</strong> &middot; REGENESYS v1.2.1<br/>
+  <strong>&copy; 2026 VASEY/AI</strong> &middot; REGENESYS v1.3.0<br/>
   A VASEY/AI creation. Part of the Vasey Multimedia content series.
 </p>

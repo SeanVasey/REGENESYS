@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { T } from "../lib/tokens.js";
 import { Icons } from "./Icons.jsx";
 
@@ -57,11 +57,17 @@ export function SectionLabel({ children, color }) {
 
 export function CopyBtn({ text }) {
   const [ok, setOk] = useState(false);
+  const timerRef = useRef(null);
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+  const flashOk = () => {
+    setOk(true);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setOk(false), 2000);
+  };
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      setOk(true);
-      setTimeout(() => setOk(false), 2000);
+      flashOk();
     } catch {
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -71,10 +77,10 @@ export function CopyBtn({ text }) {
       textArea.select();
       try {
         document.execCommand("copy");
-        setOk(true);
-        setTimeout(() => setOk(false), 2000);
-      } catch (e) {
-        console.error("Copy failed", e);
+        flashOk();
+      } catch {
+        // Clipboard unavailable (permissions / insecure context); the button
+        // simply stays in its default state.
       }
       document.body.removeChild(textArea);
     }
