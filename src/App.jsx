@@ -14,6 +14,8 @@ import {
 } from "./lib/constants.js";
 import { fetchWithRetry, getTokenLimitParam } from "./lib/api.js";
 import { buildSystem, buildUser, parseResult } from "./lib/prompts.js";
+import { partitionImageFiles } from "./lib/files.js";
+import { loadHistory, saveHistory } from "./lib/history.js";
 import { Icons } from "./components/Icons.jsx";
 import { NeuralMesh } from "./components/NeuralMesh.jsx";
 import {
@@ -27,6 +29,13 @@ import { VariationControls } from "./components/VariationControls.jsx";
 import { HistoryPanel } from "./components/HistoryPanel.jsx";
 import { AnalysisProgress } from "./components/AnalysisProgress.jsx";
 
+const APP_VERSION =
+  typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "dev";
+
+const prefersReducedMotion = () =>
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function App() {
   const [images, setImages] = useState([]);
   const [mode, setMode] = useState("single");
@@ -35,7 +44,8 @@ export default function App() {
   const [analyzing, setAnalyzing] = useState(false);
   const [result, setResult] = useState(null);
   const [dragOver, setDragOver] = useState(false);
-  const [history, setHistory] = useState([]);
+  const [uploadNotice, setUploadNotice] = useState(null);
+  const [history, setHistory] = useState(() => loadHistory());
   const [styleSubject, setStyleSubject] = useState("");
   const [variationConfig, setVariationConfig] = useState(
     DEFAULT_VARIATION_CONFIG,
@@ -45,12 +55,18 @@ export default function App() {
   const resultsRef = useRef(null);
 
   const handleFiles = useCallback((files) => {
-    const imageFiles = Array.from(files).filter((f) =>
-      f.type.startsWith("image/"),
-    );
-    if (!imageFiles.length) return;
+    const { accepted, rejected } = partitionImageFiles(files);
 
-    const readPromises = imageFiles.map(
+    setUploadNotice(
+      rejected.length
+        ? rejected
+            .map((r) => `${r.file.name || "Unnamed file"} skipped (${r.reason})`)
+            .join(" · ")
+        : null,
+    );
+    if (!accepted.length) return;
+
+    const readPromises = accepted.map(
       (file) =>
         new Promise((resolve) => {
           const reader = new FileReader();
@@ -93,13 +109,25 @@ export default function App() {
       setTimeout(
         () =>
           resultsRef.current?.scrollIntoView({
-            behavior: "smooth",
+            behavior: prefersReducedMotion() ? "auto" : "smooth",
             block: "start",
           }),
         100,
       );
     }
   }, [result]);
+
+  useEffect(() => {
+    saveHistory(history);
+  }, [history]);
+
+  useEffect(() => {
+    const onPaste = (e) => {
+      if (e.clipboardData?.files?.length) handleFiles(e.clipboardData.files);
+    };
+    window.addEventListener("paste", onPaste);
+    return () => window.removeEventListener("paste", onPaste);
+  }, [handleFiles]);
 
   const maxTokens = useMemo(() => {
     if (detail === "concise") return 2048;
@@ -295,6 +323,15 @@ export default function App() {
         ::-webkit-scrollbar-thumb { background:rgba(100,116,139,0.15); border-radius:3px; }
         ::-webkit-scrollbar-thumb:hover { background:rgba(100,116,139,0.3); }
         ::selection { background:rgba(0,206,209,0.25); }
+        :focus-visible { outline: 2px solid rgba(0,206,209,0.6); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+          html { scroll-behavior: auto !important; }
+        }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: ${T.teal}; cursor: pointer; box-shadow: 0 0 8px rgba(0,206,209,0.4); border: 2px solid ${T.bg}; }
         input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: ${T.teal}; cursor: pointer; box-shadow: 0 0 8px rgba(0,206,209,0.4); border: 2px solid ${T.bg}; }
         textarea::placeholder { color: rgba(100,116,139,0.4); }
@@ -386,7 +423,7 @@ export default function App() {
               whiteSpace: "nowrap",
             }}
           >
-            v1.2
+            v{APP_VERSION}
           </span>
         </div>
         <div
@@ -677,7 +714,8 @@ export default function App() {
                   Drop images or tap to upload
                 </div>
                 <div style={{ fontSize: 11, color: T.dim, marginTop: 2 }}>
-                  PNG, JPG, WebP &middot; Up to 20MB
+                  PNG, JPG, WebP &middot; Up to 20MB &middot; Or paste from
+                  clipboard
                 </div>
               </div>
             </div>
@@ -816,6 +854,46 @@ export default function App() {
             </div>
           )}
         </Glass>
+
+        {/* Upload notice — skipped files (wrong type / over size limit) */}
+        {uploadNotice && (
+          <div
+            role="alert"
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 8,
+              background: "rgba(245,158,11,0.06)",
+              border: "1px solid rgba(245,158,11,0.2)",
+              borderRadius: 10,
+              padding: "10px 12px",
+              marginTop: -6,
+              marginBottom: 16,
+              fontSize: 11,
+              lineHeight: 1.5,
+              color: "rgba(245,158,11,0.85)",
+            }}
+          >
+            <span style={{ flex: 1, wordBreak: "break-word" }}>
+              {uploadNotice}
+            </span>
+            <button
+              onClick={() => setUploadNotice(null)}
+              aria-label="Dismiss upload notice"
+              style={{
+                background: "none",
+                border: "none",
+                color: "rgba(245,158,11,0.7)",
+                cursor: "pointer",
+                padding: 2,
+                flexShrink: 0,
+                display: "flex",
+              }}
+            >
+              <Icons.X />
+            </button>
+          </div>
+        )}
 
         {/* Analyze Button */}
         <button
@@ -1291,7 +1369,8 @@ export default function App() {
             marginBottom: 16,
           }}
         >
-          REGENESYS v1.2 &middot; Visual Prompt Reverse-Engineering &amp; Generation
+          REGENESYS v{APP_VERSION} &middot; Visual Prompt Reverse-Engineering
+          &amp; Generation
         </div>
 
         {/* Copyright */}

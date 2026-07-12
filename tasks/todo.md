@@ -1,5 +1,31 @@
 # Task Plan
 
+## Session: Functionality & Design Improvements (2026-07-12)
+
+### Goal
+
+Ship a set of small, high-value functionality and design improvements:
+persistent history, upload validation, paste-to-upload, reduced-motion
+support, focus rings, and a single-source version string.
+
+### Plan Checklist
+
+- [x] Persist prompt history to localStorage with quota-safe fallback
+  (`src/lib/history.js`).
+- [x] Enforce the advertised 20MB upload limit and show a dismissible
+  notice for skipped files (`src/lib/files.js`).
+- [x] Add paste-to-upload (clipboard images via Ctrl/Cmd+V).
+- [x] Show relative timestamps on history entries (`src/lib/format.js`).
+- [x] Honor `prefers-reduced-motion` (CSS + static NeuralMesh frame +
+  instant results scroll) and add a global `:focus-visible` ring.
+- [x] Fix CopyBtn timeout leak on unmount.
+- [x] Inject the app version from package.json via `__APP_VERSION__`
+  (header badge + footer were hardcoded at v1.2).
+- [x] `npm audit fix` — cleared 3 new dev-dep advisories (0 remaining).
+- [x] Add 21 tests (65 total); bump version to 1.3.0; update README and
+  CHANGELOG.
+- [x] Verify: lint clean, 65/65 tests, build OK.
+
 ## Session: Repo Maintenance + iOS Safe Areas (2026-06-11)
 
 ### Goal

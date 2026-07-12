@@ -1,5 +1,6 @@
 import React from "react";
 import { T } from "../lib/tokens.js";
+import { formatRelativeTime } from "../lib/format.js";
 import { Icons } from "./Icons.jsx";
 import { Glass, Collapsible } from "./UI.jsx";
 
@@ -112,6 +113,14 @@ export function HistoryPanel({ history, onSelect, onClear, onRemove }) {
                   <span style={{ fontSize: 9, color: T.dim }}>
                     {h.platform}
                   </span>
+                  {h.timestamp && (
+                    <>
+                      <span style={{ fontSize: 9, color: T.dim }}>·</span>
+                      <span style={{ fontSize: 9, color: T.dim }}>
+                        {formatRelativeTime(h.timestamp)}
+                      </span>
+                    </>
+                  )}
                 </div>
                 <div
                   style={{
