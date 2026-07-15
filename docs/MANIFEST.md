@@ -41,15 +41,22 @@ This manifest tracks major repository artifacts and governance files.
 
 ## Static Assets (`public/`)
 
-- `regenesys-icon.svg` — App favicon / branding icon.
+- `regenesys-icon.svg` — App icon on a dark iOS tile; source for the favicon,
+  PWA/home-screen PNGs, and the SVG favicon.
+- `regenesys-icon-optimized.svg` — Transparent-background glyph used for the
+  in-app logo (`AppIcon`) and the Safari `mask-icon`.
+- `favicon.ico` — Multi-resolution favicon (16/32/48) for legacy browsers.
+- `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` — Rasterized home-screen
+  and PWA icons generated from `regenesys-icon.svg`.
 - `og-image.svg` — Social sharing image used by Open Graph/Twitter metadata.
 
 ## Build & Config
 
 - `vite.config.js` — Vite and Vitest configuration.
 - `eslint.config.js` — ESLint 9 flat config with React plugins.
-- `scripts/generate-icons.mjs` — Icon asset generator (sharp) for PNG
-  surfaces in `public/`.
+- `scripts/generate-icons.mjs` — Icon asset generator (sharp). Reads
+  `regenesys-icon.svg` and writes the PWA PNGs and `favicon.ico` into `public/`.
+  Run via `npm run icons`.
 
 ## Governance and Policy
 

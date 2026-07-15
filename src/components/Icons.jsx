@@ -4,7 +4,7 @@ import { T } from "../lib/tokens.js";
 
 const AppIcon = ({ size = 36 }) => (
   <img
-    src="/regenesys-icon.svg"
+    src="/regenesys-icon-optimized.svg"
     width={size}
     height={size}
     alt=""
