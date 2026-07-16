@@ -15,7 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   transparent `regenesys-icon-optimized.svg` is used for the in-app `AppIcon`
   and the Safari `mask-icon`.
 - Regenerated `favicon.ico` (16/32/48), `apple-touch-icon.png`, `icon-192.png`,
-  and `icon-512.png` from the new artwork.
+  and `icon-512.png` from the new artwork. Re-synced all served copies under
+  `public/` after the latest `regenesys-icon.svg` upload (refined border/glow)
+  so the favicon, PWA/iOS home-screen icons, and in-app logo reflect it.
 - `scripts/generate-icons.mjs` now reads the canonical `regenesys-icon.svg`
   instead of an inline copy and also emits `favicon.ico`. Exposed as
   `npm run icons`.
