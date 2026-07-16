@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/regenesys-icon.svg" width="96" height="96" alt="REGENESYS scanning reticle icon" />
+  <img src="public/regenesys-icon.svg" width="96" height="96" alt="REGENESYS circuit-brain app icon" />
 </p>
 
 <h1 align="center">REGENESYS</h1>
@@ -116,7 +116,9 @@ your production domain (`og:url`, `og:image`, `twitter:image`).
 ```text
 .
 ├── public/
-│   ├── regenesys-icon.svg          # App favicon / icon
+│   ├── regenesys-icon.svg          # App icon (dark tile) — favicon + PWA source
+│   ├── regenesys-icon-optimized.svg # Transparent glyph — in-app logo + mask-icon
+│   ├── favicon.ico                 # Multi-size favicon (16/32/48)
 │   ├── og-image.svg                # Social sharing Open Graph image
 │   ├── icon-192.png / icon-512.png # PWA icons
 │   ├── apple-touch-icon.png        # iOS home screen icon

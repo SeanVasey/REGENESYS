@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Refreshed the app icon to the new turquoise circuit-brain design across the
+  favicon, PWA/iOS home-screen icons, and the in-app logo. The full dark-tile
+  `regenesys-icon.svg` now sources the favicon and home-screen icons, while the
+  transparent `regenesys-icon-optimized.svg` is used for the in-app `AppIcon`
+  and the Safari `mask-icon`.
+- Regenerated `favicon.ico` (16/32/48), `apple-touch-icon.png`, `icon-192.png`,
+  and `icon-512.png` from the new artwork.
+- `scripts/generate-icons.mjs` now reads the canonical `regenesys-icon.svg`
+  instead of an inline copy and also emits `favicon.ico`. Exposed as
+  `npm run icons`.
+
 ## [1.3.0] - 2026-07-12
 
 ### Added

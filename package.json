@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src/",
+    "icons": "node scripts/generate-icons.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
