@@ -1,16 +1,27 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { copyFile, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import sharp from "sharp";
 
-// Regenerate raster icons (favicon + PWA / iOS home-screen icons) from the
-// canonical source SVG. The full-tile `regenesys-icon.svg` (dark rounded tile
-// with turquoise border) is the correct source for home-screen / favicon use:
-// iOS and PWA launchers expect an opaque, self-contained icon. The transparent
-// `regenesys-icon-optimized.svg` is reserved for in-app display and the Safari
-// mask-icon, where a transparent background is ideal.
+// Regenerate all icon assets from a single source of truth. The two SVGs at the
+// repository root are the canonical, hand-maintained artwork:
+//   - `regenesys-icon.svg`           — full dark tile w/ turquoise border. The
+//     correct source for favicon / iOS / PWA icons, which expect an opaque,
+//     self-contained image.
+//   - `regenesys-icon-optimized.svg` — transparent glyph, used for in-app
+//     display and the Safari mask-icon, where a transparent background is ideal.
+// Everything this script writes under `public/` (the served copies of both SVGs
+// plus the rasters below) is a generated artifact derived from those roots, so
+// the served assets can never drift from the source.
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const svgPath = join(root, "regenesys-icon.svg");
+
+// Copy the canonical SVGs into the served `public/` directory.
+for (const name of ["regenesys-icon.svg", "regenesys-icon-optimized.svg"]) {
+  await copyFile(join(root, name), join(root, "public", name));
+  console.log(`Copied ${name} -> public/${name}`);
+}
+
 const svg = await readFile(svgPath);
 
 // Square PNGs used by the manifest and apple-touch-icon.

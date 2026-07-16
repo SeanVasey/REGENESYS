@@ -54,9 +54,10 @@ This manifest tracks major repository artifacts and governance files.
 
 - `vite.config.js` — Vite and Vitest configuration.
 - `eslint.config.js` — ESLint 9 flat config with React plugins.
-- `scripts/generate-icons.mjs` — Icon asset generator (sharp). Reads
-  `regenesys-icon.svg` and writes the PWA PNGs and `favicon.ico` into `public/`.
-  Run via `npm run icons`.
+- `scripts/generate-icons.mjs` — Icon asset generator (sharp). Treats the two
+  root SVGs as the single source of truth: copies them into `public/` and
+  writes the PWA PNGs and `favicon.ico` from `regenesys-icon.svg`. Run via
+  `npm run icons`.
 
 ## Governance and Policy
 
