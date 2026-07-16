@@ -17,7 +17,9 @@ describe("served SVGs mirror the canonical source", () => {
   // for byte. This is the most common (and fully deterministic) drift.
   for (const name of ["regenesys-icon.svg", "regenesys-icon-optimized.svg"]) {
     it(`public/${name} byte-matches the root source`, () => {
-      expect(read(`public/${name}`).equals(read(name))).toBe(true);
+      // toEqual over the buffers yields a byte-level diff on failure, unlike a
+      // bare `.equals() === true` assertion.
+      expect(read(`public/${name}`)).toEqual(read(name));
     });
   }
 });
