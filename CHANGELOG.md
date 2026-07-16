@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Icon-integrity tests (`src/test/icons.test.js`): assert the served
+  `public/*.svg` copies byte-match their canonical roots, that every raster
+  (`apple-touch-icon.png`, `icon-192.png`, `icon-512.png`) is the expected
+  size with fully opaque corners, and that `favicon.ico` has a valid 3-frame
+  header — guarding against committing stale or transparent-cornered assets.
+
 ### Changed
 
 - Refreshed the app icon to the new turquoise circuit-brain design across the
@@ -16,8 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and the Safari `mask-icon`.
 - Regenerated `favicon.ico` (16/32/48), `apple-touch-icon.png`, `icon-192.png`,
   and `icon-512.png` from the new artwork. Re-synced all served copies under
-  `public/` after the latest `regenesys-icon.svg` upload (refined border/glow)
-  so the favicon, PWA/iOS home-screen icons, and in-app logo reflect it.
+  `public/` after the latest `regenesys-icon.svg` upload — now a full-bleed
+  opaque border plate (edge-to-edge, no transparent corners) so iOS applies
+  its own squircle mask cleanly with no home-screen wallpaper bleed-through.
 - `scripts/generate-icons.mjs` now reads the canonical `regenesys-icon.svg`
   instead of an inline copy and also emits `favicon.ico`. Exposed as
   `npm run icons`.
